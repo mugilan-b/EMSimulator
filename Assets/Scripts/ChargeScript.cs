@@ -12,6 +12,7 @@ public class ChargeScript : MonoBehaviour
     
     public float max;
     public List<Vector3> accels = new List<Vector3>();
+    public List<Vector3> pos = new List<Vector3>();
 
     private Vector3 prevVel;
     private Vector3 delV;
@@ -30,23 +31,36 @@ public class ChargeScript : MonoBehaviour
     private float dist;
     private Vector3 DistV;
     private ulong tick;
+    private Vector3 accessVector;
+    private Vector3 aperp;
+    private Vector3 accessPos;
+    private Vector3 lookVect;
 
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player");
-        wg = plyr.GetComponent<WorldGen>();
-        mode = wg.mode;
+        wg = plyr.GetComponent<WorldGen>();      
+
         tick = 0;
+
         amp = this.transform.position.z;
         center = new Vector3(0f, this.transform.position.y, 0f);
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.mass = 1f;
         prevVel = rb.velocity;
+        
         Accel = new Vector3(0f, 0f, 0f);
+        accessVector = new Vector3(0f, 0f, 0f);
+        aperp = new Vector3(0f, 0f, 0f);
+        accessPos = new Vector3(0f, 0f, 0f);
+        lookVect = new Vector3(0f, 0f, 0f);
+
+        mode = wg.mode;
         k = wg.k;
         con = 1f * wg.numparts;
         ls = wg.ls;
         q = wg.q;
+
         if(mode == 1)
         {
             rb.velocity = new Vector3(amp * Mathf.Sqrt(k / rb.mass), 0f, 0f);
@@ -63,7 +77,12 @@ public class ChargeScript : MonoBehaviour
             qty = dist / (Time.fixedDeltaTime * ls);
             if (qty >= 0 && qty < accels.Count)
             {
-                EMFAt = (-q / (con * Mathf.Pow(ls, 2) * dist)) * accels[(accels.Count - 1) - (int)qty];
+                accessVector = accels[(accels.Count - 1) - (int)qty];
+                accessPos = pos[(accels.Count - 1) - (int)qty];
+                lookVect = at - accessPos;
+                aperp = accessVector - ((Vector3.Dot(lookVect, accessVector) * lookVect.normalized) / lookVect.magnitude);
+                aperp = -aperp;
+                EMFAt = (-q / (con * Mathf.Pow(ls, 2) * dist)) * aperp;
             }
             //EMFAt = ((con * q) / (Mathf.Pow(dist, 3))) * (DistV.normalized * dist);
             else
@@ -100,6 +119,7 @@ public class ChargeScript : MonoBehaviour
         Accel = delV / Time.fixedDeltaTime;
         prevVel = rb.velocity;
         accels.Add(Accel);
+        pos.Add(transform.position);
         tick++;
     }
 }

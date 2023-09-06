@@ -41,3 +41,8 @@ Values - 0: sinusoidal, 1: circular (recommended with one charge), 2: sinusoidal
 Hold the left mouse button and you can look up/down. Initially it will push you a bit so look around to recenter.
 W/A/S/D to move around.
 If simulation is slow consider reducing load
+
+# Changelog:
+v0.0.3 - First github commit
+v0.0.4 - Added different modes of movement, added 'acon' convar.
+v0.0.5 - Corrected acceleration vector from a to aperp. 
