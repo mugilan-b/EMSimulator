@@ -17,6 +17,8 @@ public class WorldGen : MonoBehaviour
     public int numparts;
     public float q;
     public float ls;
+    public int acon;
+    public int mode;
 
     private float density;
     private float range;
@@ -32,22 +34,25 @@ public class WorldGen : MonoBehaviour
     void Start()
     {
         print(Application.dataPath);
-        vals = new string[8];
+        vals = new string[10];
         string path = Application.dataPath + "/set.ini";
         StreamReader reader = new StreamReader(path);
         sett = reader.ReadToEnd();
         reader.Close();
         vals = sett.Split(',');
-        print(vals[1]);
-        dim = int.Parse(vals[2]);
+
+        
         density = float.Parse(vals[0]);
         range = float.Parse(vals[1]);
+        dim = int.Parse(vals[2]);
         k = int.Parse(vals[3]);
         numparts = int.Parse(vals[4]);
         upperlim = float.Parse(vals[5]);
         q = float.Parse(vals[6]);
         ls = float.Parse(vals[7]);
-        //density,range,dim,k,numparts,upperlim,q,ls      
+        acon = int.Parse(vals[8]);
+        mode = int.Parse(vals[9]);
+        //density,range,dim,k,numparts,upperlim,q,ls,acon,mode    
 
         every = 1 / density;
         cnt = (int)Mathf.Floor(range * density);

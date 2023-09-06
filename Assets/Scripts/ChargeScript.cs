@@ -8,6 +8,7 @@ public class ChargeScript : MonoBehaviour
 {
     private float ls;
     private float q;
+    private int mode;
     
     public float max;
     public List<Vector3> accels = new List<Vector3>();
@@ -34,16 +35,22 @@ public class ChargeScript : MonoBehaviour
     {
         plyr = GameObject.FindGameObjectWithTag("Player");
         wg = plyr.GetComponent<WorldGen>();
+        mode = wg.mode;
         tick = 0;
-        amp = this.gameObject.transform.position.y;
-        center = new Vector3(0f, amp, 0f);
+        amp = this.transform.position.z;
+        center = new Vector3(0f, this.transform.position.y, 0f);
         rb = this.gameObject.GetComponent<Rigidbody>();
+        rb.mass = 1f;
         prevVel = rb.velocity;
         Accel = new Vector3(0f, 0f, 0f);
         k = wg.k;
         con = 1f * wg.numparts;
         ls = wg.ls;
         q = wg.q;
+        if(mode == 1)
+        {
+            rb.velocity = new Vector3(amp * Mathf.Sqrt(k / rb.mass), 0f, 0f);
+        }
     }
     
     public Vector3 CalcEMF(Vector3 at)
@@ -72,12 +79,23 @@ public class ChargeScript : MonoBehaviour
     }
 
     void FixedUpdate()
-    {       
+    {
         disp = this.transform.position - center;
-        rb.AddForce(-k * disp, ForceMode.Force);
-        
-        //rb.AddForce(-this.transform.position * k, ForceMode.Force);
-        
+        if (mode == 0 || mode == 1) //sinusoidal or elliptical
+        {            
+            rb.AddForce(-k * disp, ForceMode.Force);
+        }
+        if(mode == 2) //sinusoidal packet
+        {
+            if(tick < ((1.25 * (2 * Mathf.PI * Mathf.Sqrt(rb.mass / k))) / Time.fixedDeltaTime))
+            {
+                rb.AddForce(-k * disp, ForceMode.Force);                
+            }        
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+        }
         delV = rb.velocity - prevVel;
         Accel = delV / Time.fixedDeltaTime;
         prevVel = rb.velocity;

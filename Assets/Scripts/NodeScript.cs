@@ -20,11 +20,13 @@ public class NodeScript : MonoBehaviour
     private ChargeScript[] cs;
     private float x;
     private float y;
+    private int acon;
 
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player");
         wg = plyr.GetComponent<WorldGen>();
+        acon = wg.acon;
         upperlim = wg.upperlim;
         x = 0f;
         y = 0f;
@@ -79,8 +81,10 @@ public class NodeScript : MonoBehaviour
             {
                 y = upperlim;
             }
-            arrow.transform.localScale = new Vector3(15f, 15f, 15f * y);
-            
+            if(acon == 0)
+            {
+                arrow.transform.localScale = new Vector3(15f, 15f, 15f * y);
+            }                        
             x = Mathf.Atan(EMField.magnitude) / (Mathf.PI / 2);
             arrowM.material.SetFloat("_Metallic", (1 - x));
             arrowM.material.SetFloat("_Glossiness", (1 - x));
