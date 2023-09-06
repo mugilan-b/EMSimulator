@@ -3,7 +3,7 @@
 
 You can configure:
 
-# density,range,dim,k,numparts,upperlim,q,ls   
+# density,range,dim,k,numparts,upperlim,q,ls,acon,mode
   
 Density - Density of the points where you calculate field
 range - The range (farthest distance along X axis) till where you calculate field
@@ -23,6 +23,13 @@ Values - Float
 
 ls - speed of light.
 Values - Positive float
+
+acon - Set constant arrow size (not recommended)
+Values - 0 to disable, other integers to enable
+
+mode - Set modes of charge movement:
+Values - 0: sinusoidal, 1: circular (recommended with one charge), 2: sinusoidal packet, other integer: no movement.
+
 
 # How to run:
 1) Extract
