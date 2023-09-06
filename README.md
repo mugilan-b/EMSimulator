@@ -44,5 +44,8 @@ If simulation is slow consider reducing load
 
 # Changelog:
 v0.0.3 - First github commit
+
 v0.0.4 - Added different modes of movement, added 'acon' convar.
-v0.0.5 - Corrected acceleration vector from a to aperp. 
+
+v0.0.5 - Corrected acceleration vector from a to aperp.
+ 
