@@ -6,12 +6,13 @@ You can configure:
 # density,range,dim,k,numparts,upperlim,q,ls,acon,mode
   
 Density - Density of the points where you calculate field
-range - The range (farthest distance along X axis) till where you calculate field
+Values - float, positive, bounded by computational power.
+
+Range - The range (farthest distance along X axis) till where you calculate field
 Values - float, positive, bounded by computational power.
 
 dim - Dimensions considered.
-Values - 1: Consider only X axis. 2: Consider a grid of 2d points. 
-Rest: Consider only X and Y axes.
+Values - 1: Consider only X axis. 2: Consider a grid of 2d points. Rest: Consider only X and Y axes.
 
 numparts - number of charges. Values - Odd integers.
 
