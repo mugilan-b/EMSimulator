@@ -1,5 +1,5 @@
 # EMSimulator
- Simulating Electrodynamics of point charges
+ Simulating and Visualizing the dynamic component of Electric field of an accelerating point charge
 
 You can configure:
 
