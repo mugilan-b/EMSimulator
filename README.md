@@ -1,6 +1,8 @@
 # EMSimulator
  Simulating and Visualizing the dynamic component of Electric field of an accelerating point charge
 
+Inspired from 3blue1brown: https://www.youtube.com/watch?v=aXRTczANuIs
+
 You can configure:
 
 # density,range,dim,k,numparts,upperlim,q,ls,acon,mode
