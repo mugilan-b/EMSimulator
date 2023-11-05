@@ -7,30 +7,32 @@ You can configure:
 
 # density,range,dim,k,numparts,upperlim,q,ls,acon,mode
   
-Density - Density of the points where you calculate field
+Density - Density of the points where you calculate field <br>
 Values - float, positive, bounded by computational power.
 
-Range - The range (farthest distance along X axis) till where you calculate field
+Range - The range (farthest distance along X axis) till where you calculate field <br>
 Values - float, positive, bounded by computational power.
 
-dim - Dimensions considered.
+dim - Dimensions considered. <br>
 Values - 1: Consider only X axis. 2: Consider a grid of 2d points. Rest: Consider only X and Y axes.
+
+k - spring constant of charge motion
 
 numparts - number of charges. Values - Odd integers.
 
-upperlim - Upper limit of Field vector lengths.
+upperlim - Upper limit of Field vector lengths. <br>
 Values - Positive float
 
-q - strength of each charge
+q - strength of each charge <br>
 Values - Float
 
-ls - speed of light.
+ls - speed of light. <br>
 Values - Positive float
 
-acon - Set constant arrow size (not recommended)
+acon - Set constant arrow size (not recommended) <br>
 Values - 0 to disable, other integers to enable
 
-mode - Set modes of charge movement:
+mode - Set modes of charge movement: <br>
 Values - 0: sinusoidal, 1: circular (recommended with one charge), 2: sinusoidal packet, other integer: no movement.
 
 
@@ -41,8 +43,8 @@ Values - 0: sinusoidal, 1: circular (recommended with one charge), 2: sinusoidal
 4) Write the values comma separated, in that order, no spaces or newlines anywhere. A default is provided.
 5) Launch EMSimulator.exe
 
-Hold the left mouse button and you can look up/down. Initially it will push you a bit so look around to recenter.
-W/A/S/D to move around.
+Hold the left mouse button and you can look up/down. Initially it will push you a bit so look around to recenter. <br>
+W/A/S/D to move around. <br>
 If simulation is slow consider reducing load.
 
 # Changelog:
