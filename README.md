@@ -3,6 +3,10 @@
 
 Inspired from 3blue1brown: https://www.youtube.com/watch?v=aXRTczANuIs
 
+![Pic1](/SS1.png?raw=true "SamplePicture1")
+
+![Pic2](/SS2.png?raw=true "SamplePicture2")
+
 You can configure:
 
 # density,range,dim,k,numparts,upperlim,q,ls,acon,mode
